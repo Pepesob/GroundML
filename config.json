@@ -1,0 +1,8 @@
+{
+    "img_width": 180,
+    "img_height": 180,
+    "test_img_path": "./test_soil_black.jpg",
+    "img_path": "./camera_img.jpg",
+    "model_path": "./soil_recognition_lite",
+    "output_labels": ["Label1", "Label2", "Label3", "Label4", "Label5", "Label6"]
+}

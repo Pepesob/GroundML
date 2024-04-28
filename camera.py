@@ -1,15 +1,13 @@
-from picamera2 import Picamera2, Preview
-import time
+from picamera2 import Picamera2
+from configuration import Configuration
 
-picam = Picamera2(0)
 
-config = picam.create_preview_configuration()
-picam.configure(config)
+config = Configuration()
+picam = Picamera2()
 
-picam.start_preview(Preview.QTGL)
-
-picam.start()
-time.sleep(2)
-picam.capture_file("test-python.jpg")
-
-picam.close()
+def take_picture():
+    picam_config = picam.create_preview_configuration(main={"size": (config["img_width"], config["img_height"])})
+    picam.configure(picam_config)
+    picam.start()
+    picam.capture_file(config["img_path"])
+    picam.close()

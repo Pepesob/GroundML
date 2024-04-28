@@ -1,17 +1,15 @@
 import tflite_runtime.interpreter as tflite
 from PIL import Image
 import numpy as np
+from configuration import Configuration
 
-image_width = 180
-image_height = 180
 
-image_path = "./test_soil_black.jpg"
-model_path = "./soil_recognition_lite"
+config = Configuration()
 
-interpreter = tflite.Interpreter(model_path=model_path)
+interpreter = tflite.Interpreter(model_path=config["model_path"])
 
 def get_image_array(path):
-    image = Image.open(path).resize((image_width, image_height))
+    image = Image.open(path).resize((config["img_widht"], config["img_height"]))
     return np.array(image,dtype=np.float32)
 
 
@@ -21,7 +19,7 @@ def predict_soil():
 
     interpreter.allocate_tensors()
 
-    camera_image = get_image_array(image_path)
+    camera_image = get_image_array(config["img_path"])
 
     interpreter.set_tensor(input_details[0]['index'], [camera_image])
 
@@ -32,3 +30,5 @@ def predict_soil():
     return predictions[0]
 
 
+if __name__ == "__main__":
+    print(predict_soil())
