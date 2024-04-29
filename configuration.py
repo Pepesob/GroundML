@@ -16,3 +16,4 @@ class Configuration:
     
     def __getitem__(self,a):
         return self.config[a]
+    
