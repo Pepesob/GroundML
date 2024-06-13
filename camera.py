@@ -1,8 +1,18 @@
 from picamera2 import Picamera2
+import shutil
+import random
 from configuration import Configuration
 
 
 config = Configuration()
+
+def copy_image():
+    try:
+        n = random.randint(1,100000000)
+        shutil.copy2(config["img_path"], f"{config["img_folder"]}/image_{n}.jpg")
+    finally:
+        pass
+
 
 
 def take_picture():
@@ -11,6 +21,7 @@ def take_picture():
     picam.configure(picam_config)
     picam.start()
     picam.capture_file(config["img_path"])
+    copy_image()
     picam.close()
 
 
