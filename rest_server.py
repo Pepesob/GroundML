@@ -13,7 +13,7 @@ async def hello():
 
 @app.get("/predictions")
 async def get_predictions():
-    return predictions_with_labels(predict_soil())
+    return predict_soil(config["img_path"])
 
 
 if __name__ == '__main__':

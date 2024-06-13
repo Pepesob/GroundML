@@ -23,7 +23,7 @@ def get_image_array(path):
     return np.array(image,dtype=np.float32)
 
 
-def predict_soil():
+def predict_soil(img_path):
     take_picture()
 
     input_details = interpreter.get_input_details()
@@ -31,7 +31,7 @@ def predict_soil():
 
     interpreter.allocate_tensors()
 
-    camera_image = get_image_array(config["img_path"])
+    camera_image = get_image_array(img_path)
 
     interpreter.set_tensor(input_details[0]['index'], [camera_image])
 
@@ -39,8 +39,8 @@ def predict_soil():
 
     predictions = interpreter.get_tensor(output_details[0]["index"])
 
-    return softmax(predictions[0])
+    return predictions_with_labels(softmax(predictions[0]))
 
 
 if __name__ == "__main__":
-    print(predict_soil())
+    print(predict_soil(config["test_img_path"]))
