@@ -9,7 +9,7 @@ config = Configuration()
 def copy_image():
     try:
         n = random.randint(1,100000000)
-        shutil.copy2(config["img_path"], f"{config["img_folder"]}/image_{n}.jpg")
+        shutil.copy2(config["img_path"], f'{config["img_folder"]}/image_{n}.jpg')
     finally:
         pass
 
