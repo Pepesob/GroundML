@@ -6,7 +6,7 @@
     "test_img_path": "./test_soil_black.jpg",
     "img_path": "./camera_img.jpg",
     "img_folder": "./images",
-    "model_path": "./soil_recognition_lite2",
+    "model_path": "./soil_recognition_lite3",
     "labels": ["Czarnoziem", "Gleba gliniana", "Gleba torfowa", "Gleba wapienna", "Piasek"],
     "port": 8000,
     "ip_addr": "0.0.0.0"
