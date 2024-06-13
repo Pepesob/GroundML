@@ -1,4 +1,6 @@
 {
+    "img_width_taken": 2592,
+    "img_height_taken": 1944,
     "img_width": 180,
     "img_height": 180,
     "test_img_path": "./test_soil_black.jpg",

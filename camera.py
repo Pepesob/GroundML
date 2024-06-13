@@ -17,7 +17,7 @@ def copy_image():
 
 def take_picture():
     picam = Picamera2()
-    picam_config = picam.create_preview_configuration(main={"size": (config["img_width"], config["img_height"])})
+    picam_config = picam.create_preview_configuration(main={"size": (config["img_width_taken"], config["img_height_taken"])})
     picam.configure(picam_config)
     picam.start()
     picam.capture_file(config["img_path"])
