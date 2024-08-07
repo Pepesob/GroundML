@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 import uvicorn
 from configuration import Configuration
 from prediction import predict_soil, predictions_with_labels
@@ -21,6 +22,15 @@ async def local_image_prediction(path: str):
         return predict_soil(path)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Nie znaleziono pliku")
+
+
+@app.get("/image")
+async def get_image():
+
+    image_path = "./test_soil_black.jpg"
+
+    # Return the image file
+    return FileResponse(image_path)
 
 # @app.post("/predictions/image")
 # async def local_image_prediction(path: str):
