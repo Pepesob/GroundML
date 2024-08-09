@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 import uvicorn
 from configuration import Configuration
-from prediction import predict_soil, predictions_with_labels
+from prediction import predict_soil
 import socket
 import time
 import asyncio
