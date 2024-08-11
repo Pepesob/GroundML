@@ -1,4 +1,3 @@
-from picamera2 import Picamera2
 import shutil
 import random
 from configuration import Configuration
@@ -16,6 +15,8 @@ def copy_image():
 
 
 def take_picture():
+    from picamera2 import Picamera2
+    
     picam = Picamera2()
     picam_config = picam.create_preview_configuration(main={"size": (config["img_width_taken"], config["img_height_taken"])})
     picam.configure(picam_config)

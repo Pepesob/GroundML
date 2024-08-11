@@ -1,8 +1,11 @@
-import tflite_runtime.interpreter as tflite
-from PIL import Image
+try:
+    import tflite_runtime.interpreter as tflite
+except ModuleNotFoundError:
+    import tensorflow.lite as tflite
+
+import PIL
 import numpy as np
 from configuration import Configuration
-from camera import take_picture
 
 
 config = Configuration()
@@ -18,22 +21,15 @@ def softmax(x):
     return e_x / e_x.sum(axis=0)
 
 
-def get_image_array(path):
-    image = Image.open(path).resize((config["img_width"], config["img_height"]))
-    return np.array(image,dtype=np.float32)
-
-
-def predict_soil(img_path):
-    take_picture()
-
+def predict_soil(soil_image: PIL.Image):
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
 
     interpreter.allocate_tensors()
 
-    camera_image = get_image_array(img_path)
+    image_array = np.array(soil_image.resize((config["img_width"], config["img_height"])), dtype=np.float32)
 
-    interpreter.set_tensor(input_details[0]['index'], [camera_image])
+    interpreter.set_tensor(input_details[0]['index'], [image_array])
 
     interpreter.invoke()
 

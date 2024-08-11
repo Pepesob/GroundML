@@ -1,4 +1,4 @@
-venv
+*venv
 __pycache__
 camera_img.jpg
 __pycache__/configuration.cpython-311.pyc
