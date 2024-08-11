@@ -1,4 +1,4 @@
-import PIL
+from PIL import Image
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 import uvicorn
@@ -61,7 +61,7 @@ async def get_predictions():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-    image = PIL.Image(config["img_path"])
+    image = Image.open(config["img_path"])
     return predict_soil(image)
 
 
