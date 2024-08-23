@@ -1,4 +1,4 @@
-import PIL
+from PIL import Image
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 import uvicorn
@@ -83,7 +83,7 @@ async def get_predictions():
         raise HTTPException(status_code=500, detail=str(e))
 
     # This loads the image from the file
-    image = PIL.Image(config["img_path"])
+    image = Image.open(config["img_path"])
 
     # this predicts what soil is shown on image and returns json with probability of which soil the photo is
     return predict_soil(image)

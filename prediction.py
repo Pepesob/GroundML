@@ -3,7 +3,7 @@ try:
 except ModuleNotFoundError:
     import tensorflow.lite as tflite
 
-import PIL
+from PIL import Image
 import numpy as np
 from configuration import Configuration
 
@@ -21,7 +21,7 @@ def softmax(x):
     return e_x / e_x.sum(axis=0)
 
 
-def predict_soil(soil_image: PIL.Image):
+def predict_soil(soil_image: Image.Image):
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
 
@@ -39,4 +39,4 @@ def predict_soil(soil_image: PIL.Image):
 
 
 if __name__ == "__main__":
-    print(predict_soil(config["test_img_path"]))
+    print(predict_soil(Image.open(config["test_img_path"])))
