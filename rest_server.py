@@ -7,7 +7,6 @@ from configuration import Configuration
 from prediction import predict_soil
 import socket
 import time
-import asyncio
 import threading
 import struct
 
@@ -41,7 +40,7 @@ def udp_listen():
     # The infinite loop that listens for packets
     while True:
         # listening for packet, 1024 is maximum number of bytes that can be received
-        # return value is list of bytes (which we are not interested) and ip adress of the sender
+        # return value is a list of bytes (which we are not interested) and ip adress of the sender
         _, addr = server_socket.recvfrom(1024)
         print("Got request from:", addr)
 
