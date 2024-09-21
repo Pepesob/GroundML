@@ -93,11 +93,16 @@ async def get_predictions():
 async def get_image():
     return FileResponse(config["img_path"])
 
+@app.get("/drl")
+async def get_image():
+    return FileResponse("test.drl")
+
 # Debug function, relict of the past
 @app.get("/predictions/path")
 async def local_image_prediction(path: str):
     try:
-        return predict_soil(path)
+        image = Image.open(path)
+        return predict_soil(image)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="File not found")
 
